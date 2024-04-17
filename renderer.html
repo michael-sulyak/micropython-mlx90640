@@ -121,7 +121,7 @@
 
     canvas.style.filter = `blur(${Math.floor(blockSize / 2)}px)`
 
-    const gradientSize = 10000
+    const gradientSize = 1000
     const gradientLookupTable = []
 
     const gradientStops = [
@@ -189,8 +189,8 @@
         midGradientLabel.textContent = `${midTemp.toFixed(1)}°C`
         maxGradientLabel.textContent = `${maxTemp.toFixed(1)}°C`
 
-        minCanvasLabel.textContent = `${Math.floor(minTemp)}`
-        maxCanvasLabel.textContent = `${Math.floor(maxTemp)}`
+        minCanvasLabel.textContent = `${minTemp.toFixed(1)}`
+        maxCanvasLabel.textContent = `${maxTemp.toFixed(1)}`
 
         const minArrCoordinates = getArrCoordinates(minIndex, width)
         const maxArrCoordinates = getArrCoordinates(maxIndex, width)
