@@ -71,7 +71,7 @@ class IrCameraServer:
         self.server.send('HTTP/1.0 200 OK\r\n')
         self.server.send('Content-Type: application/octet-stream\r\n\r\n')
         self.mlx.get_frame(self.frame)
-        self.server.send_bytes(bytes(self.frame))  # MicroPyServer doesn't have it, but you can implement it to speed up the sending.
+        self.server.send_bytes(bytes(self.frame))
 
     def run(self):
         # Need to connect to WiFi before running the server
@@ -82,7 +82,7 @@ camera_server = IrCameraServer()
 camera_server.run()
 ```
 
-`MicroPyServer.send_bytes`:
+Implementation of `MicroPyServer.send_bytes`:
 ```python    
     def send_bytes(self, data):
         """ Send data to client """
