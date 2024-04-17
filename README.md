@@ -28,7 +28,7 @@ To use the MLX90640 driver with MicroPyServer, follow these steps:
     mlx = MLX90640(i2c)
     mlx.refresh_rate = RefreshRate.REFRESH_2_HZ
     ```
-3. Continuously capture and serve thermal image data:
+3. Continuously capture:
     ```python
     frame = init_float_array(768)
     while True:
