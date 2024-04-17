@@ -1,4 +1,6 @@
-# Driver for MLX90640 IR Camera
+# MicroPython Driver for MLX90640 IR Camera
+
+![](example.png)
 
 ## Introduction
 
