@@ -33,7 +33,7 @@ To use the MLX90640 driver with MicroPyServer, follow these steps:
     frame = init_float_array(768)
     while True:
         mlx.get_frame(frame)
-        print(frame)  # Data is now ready to be served via MicroPyServer
+        print(frame)
     ```
 
 ## Example Integration with MicroPyServer
@@ -91,7 +91,7 @@ camera_server.run()
         self._connect.sendall(data)
 ```
 
-NOTE: You can find `renderer.html` in this repository.
+NOTE: You can find file `renderer.html` in this repository.
 
 ## Contributing
 
