@@ -2,9 +2,13 @@
 
 ## Introduction
 
-This repository contains a MicroPython driver for the MLX90640 thermal camera sensor. This driver is a small refactored and small optimized version based on the original [Adafruit CircuitPython MLX90640 driver](https://github.com/adafruit/Adafruit_CircuitPython_MLX90640).
+This repository contains a MicroPython driver for the MLX90640 thermal camera sensor. This driver is a small refactored and small optimized version based on the original [Adafruit CircuitPython MLX90640 driver](https://github.com/adafruit/Adafruit_CircuitPython_MLX90640), but for MicroPython.
 
 (There are still things to refactor and optimize here, but the current version is enough to get you started.)
+
+This driver was tested on:
+
+* Raspberry Pi Pico W
 
 ## Basic Usage
 
@@ -56,7 +60,7 @@ class IrCameraServer:
         self.server.send('HTTP/1.0 200 OK\r\n')
         self.server.send('Content-Type: text/html; charset=utf-8\r\n\r\n')
 
-        with open('index.html', 'r') as file:
+        with open('renderer.html', 'r') as file:
             self.server.send(file.read())
 
     def show_result(self, request):
@@ -84,6 +88,8 @@ camera_server.run()
             raise Exception("Can't send response, no connection instance")
         self._connect.sendall(data)
 ```
+
+NOTE: You can find `renderer.html` in this repository.
 
 ## Contributing
 
