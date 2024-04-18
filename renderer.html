@@ -168,7 +168,19 @@
     const minCanvasLabel = document.getElementById('minCanvasLabel')
     const maxCanvasLabel = document.getElementById('maxCanvasLabel')
 
+    function mirrorThermalImage(data) {
+        for (let y = 0; y < height; ++y) {
+            for (let x = 0; x < width / 2; ++x) {
+                const temp = data[y * width + x]
+                data[y * width + x] = data[y * width + (width - x - 1)]
+                data[y * width + (width - x - 1)] = temp
+            }
+        }
+    }
+
     function updateThermalImage(data) {
+        mirrorThermalImage(data)
+
         let minIndex = 0
         let maxIndex = 0
 
@@ -205,8 +217,8 @@
         maxCanvasLabel.style.top = `${Math.floor(maxArrCoordinates[1] * blockSize)}px`
         maxCanvasLabel.style.left = `${marginLeft + Math.floor(maxArrCoordinates[0] * blockSize)}px`
 
-        for (let y = 0; y < height; y++) {
-            for (let x = 0; x < width; x++) {
+        for (let y = 0; y < height; ++y) {
+            for (let x = 0; x < width; ++x) {
                 const temp = data[y * width + x]
                 ctx.fillStyle = temperatureToColor(temp, minTemp, maxTemp)
                 ctx.fillRect(x * blockSize, y * blockSize, blockSize, blockSize)
@@ -241,6 +253,9 @@
     canvas.addEventListener('mouseleave', hideTooltip)
 
     function fetchAndRenderImage() {
+        const startedAt = Date.now()
+        const minDelay = 100
+
         fetch('./result.bytes').then(
             response => response.arrayBuffer()
         ).then(data => {
@@ -255,7 +270,7 @@
         }).catch(
             error => console.error('Error fetching temperature data:', error),
         ).finally(
-            () => setTimeout(fetchAndRenderImage, 0),
+            () => setTimeout(fetchAndRenderImage, Math.max(minDelay - (Date.now() - startedAt), 0)),
         )
     }
 
