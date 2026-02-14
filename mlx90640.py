@@ -298,6 +298,7 @@ class MLX90640:
                     * alpha_compensated
                     * (ir_data + alpha_compensated * ta_tr)
                 ))
+                sx *= self.ks_to[1]
                 to = math.sqrt(math.sqrt(
                     (ir_data / (alpha_compensated * (1 - self.ks_to[1] * 273.15) + sx) + ta_tr)
                 )) - 273.15
